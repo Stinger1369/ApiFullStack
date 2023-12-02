@@ -1,72 +1,105 @@
-.contact-form-container {
+.contact-container {
   display: flex;
-  flex-direction: column ;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; // Hauteur complète de la fenêtre de visualisation
+  min-height: 100vh;
   padding: 1rem;
-  background-color: #f4f4f4; // Couleur d'arrière-plan
+  background-color: #212529; // Arrière-plan sombre pour un look futuriste
 
-  form {
+  .contact-form-container {
     background-color: #fff;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3); // Ombre lumineuse
     width: 100%;
-    max-width: 500px; // Largeur maximale du formulaire
+    max-width: 500px;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease-in-out;
 
-    .form-group {
-      margin-bottom: 1rem;
+    &:hover {
+      transform: translateY(-10px); // Légère élévation lors du survol
+    }
 
-      label {
-        font-size: 1rem;
-        color: #333;
-        margin-bottom: 0.5rem;
-      }
+    form {
+      .form-group {
+        margin-bottom: 1rem;
 
-      .form-control {
-        padding: 0.75rem;
-        border: 2px solid #ddd;
-        border-radius: 0.5rem; // Bordures arrondies pour les champs
+        label {
+          font-size: 1rem;
+          color: #007bff; // Couleur bleue lumineuse
+          margin-bottom: 0.5rem;
+        }
 
-        &:focus {
-          border-color: #007bff;
-          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        .form-control {
+          padding: 0.75rem;
+          border: 1px solid #007bff; // Bordure bleue
+          border-radius: 0.5rem;
+          background-color: #2c3034; // Fond sombre pour les champs de saisie
+          color: #fff; // Texte blanc
+
+          &:focus {
+            border-color: #66afe9;
+            box-shadow: 0 0 0 0.2rem rgba(102, 175, 233, 0.6);
+            background-color: #3e444a; // Fond un peu plus clair lors du focus
+          }
+        }
+
+        textarea.form-control {
+          height: 150px;
         }
       }
 
-      textarea.form-control {
-        height: 150px; // Hauteur fixe pour la zone de texte
+      .btn-primary {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: #007bff; // Bouton bleu
+        color: #fff;
+        font-size: 1rem;
+        transition: background-color 0.3s, transform 0.3s;
+
+        &:hover {
+          background-color: #0056b3;
+          transform: scale(1.05); // Grandissement du bouton
+        }
       }
     }
 
-    .btn-primary {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      background-color: #007bff;
+    .message {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
       color: #fff;
-      font-size: 1rem;
-      transition: background-color 0.3s;
+      transition: opacity 0.3s;
 
-      &:hover {
-        background-color: #0056b3;
+      &.success {
+        background-color: #28a745;
+      }
+
+      &.error {
+        background-color: #dc3545;
       }
     }
   }
-  .message {
+
+  .social-media-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 5px;
-    text-align: center;
-    color: white;
 
-    &.success {
-      background-color: #28a745; // Vert pour le succès
-    }
+    a {
+      margin: 0 10px;
+      font-size: 2rem;
+      color: #007bff;
+      transition: color 0.3s, transform 0.3s;
 
-    &.error {
-      background-color: #dc3545; // Rouge pour l'erreur
+      &:hover {
+        color: #0056b3;
+        transform: scale(1.1); // Grandissement des icônes
+      }
     }
   }
 }

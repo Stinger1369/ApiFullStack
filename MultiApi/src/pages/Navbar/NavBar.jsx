@@ -12,15 +12,19 @@ function NavBar({ onSearch }) {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
-
+ 
   const handleSearch = () => {
     onSearch(searchTerm);
   };
-
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
   const handleLogout = () => {
     setIsAuthenticated(false);
-    localStorage.removeItem('isAuthenticated'); // Clear the authentication state from localStorage
-    // Perform additional logout actions if necessary
+    localStorage.removeItem('isAuthenticated'); 
+    
   };
 
   return (
@@ -51,6 +55,7 @@ function NavBar({ onSearch }) {
               placeholder="Rechercher une ville..."
               value={searchTerm}
               onChange={handleSearchChange}
+              onKeyPress={handleKeyPress}
             />
             <button onClick={handleSearch}>Recherche</button>
           </div>

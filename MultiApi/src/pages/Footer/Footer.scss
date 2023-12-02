@@ -1,12 +1,20 @@
 @import '../../variables';
 
 footer {
-    background-color: $bg-nav;
-    // background-color: rgb(107 150 201 / 50%);
     border-radius: $b-radius;
     box-shadow: $shadow;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: $f-art;
+    animation: backgroundAnimation 10s infinite alternate;
+
+    @keyframes backgroundAnimation {
+        0%, 100% { 
+            background-color: #007bff; // Bleu
+        }
+        50% { 
+            background-color: #ff7f7f; // Rouge
+        }
+    }
 }
+

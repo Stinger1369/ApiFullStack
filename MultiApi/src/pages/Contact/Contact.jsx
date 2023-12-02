@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import emailjs from 'emailjs-com';
 import './Contact.scss';
+import { FaLinkedinIn, FaWhatsapp, FaInstagram, FaEnvelope, FaTwitter, FaGithub } from 'react-icons/fa'; 
+
 
 function ContactForm() {
   const form = useRef();
@@ -33,9 +35,19 @@ function ContactForm() {
         setTimeout(() => setMessage(''), 5000); // Efface le message après 5 secondes
     });
   };
+  const socialMediaLinks = {
+    linkedIn: "https://www.linkedin.com/in/votreprofil/",
+    whatsApp: "https://wa.me/votrenumero",
+    email: "mailto:votreadressemail@example.com",
+    instagram: "https://www.instagram.com/votreprofil/",
+    twitter: "https://twitter.com/votreprofil",
+    github: "https://github.com/Stinger1369"
+};
 
   return (
-    <div className="contact-form-container">
+    <div className="contact-container">
+       
+       <div className="contact-form-container">
       <form ref={form} onSubmit={sendEmail}>
         <div className="mb-3">
           <label htmlFor="user_name" className="form-label">Name</label>
@@ -58,6 +70,16 @@ function ContactForm() {
           {message}
         </div>
       )}
+       </div>
+       <div className="social-media-links">
+                <a href={socialMediaLinks.linkedIn} target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
+                <a href={socialMediaLinks.whatsApp} target="_blank" rel="noopener noreferrer"><FaWhatsapp /></a>
+                <a href={socialMediaLinks.email}><FaEnvelope /></a>
+                <a href={socialMediaLinks.instagram} target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+                <a href={socialMediaLinks.twitter} target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+                <a href={socialMediaLinks.github} target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+
+       </div>
     </div>
   );
 }

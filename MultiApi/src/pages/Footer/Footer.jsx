@@ -1,10 +1,13 @@
+// Footer.jsx
 import './Footer.scss';
 
 export default function Footer() {
-
-    return <>
+    return (
         <footer className="footer">
-            <h2>Footer</h2>
+            <div className="footer-content">
+                
+                <p>© 2023 Tous droits réservés</p>
+            </div>
         </footer>
-    </>
+    );
 }
