@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './pages/Navbar/NavBar';
 import Footer from './pages/Footer/Footer';
@@ -21,62 +21,68 @@ import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
 
 import './App.scss';
 
+// Composant de chat chargé de manière paresseuse
+const LazyChat = lazy(() => import('./components/Chat/Chat'));
+
 function App() {
   const [city, setCity] = useState('Paris');
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('light');
 
   const handleSearch = async (term) => {
     setCity(term);
   };
 
-  console.warn(theme)
+  console.warn(theme);
   return (
     <AuthProvider>
-    <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
-    <Router>
-      <div className="App">
-        <NavBar onSearch={handleSearch} />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Weather city={city} />
-              <div className="content">
-                {city && (
-                  <>
-                    <div className="c-col">
-                      <Population title={`Population`} city={city} />
-                      <CurrencyConverter />
-                    </div>
-                    <div className="c-col map">
-                      <CityMap city={city} />
-                    </div>
-                    <div className="c-col">
-                      <MarketStack title={`MarketStack`}  />
-                      <ExchangeRateStack title={`ExchangeRateStack`}  />
-                      
-                    </div>  
-                  </>
-                )}
-              </div>
-            </>
-          } />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/Inscription" element={<Inscription />} />
-          <Route path="/Connexion" element={<Connexion />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
+      <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
+        <Router>
+          <div className="App">
+            <NavBar onSearch={handleSearch} />
+            <Routes>
+              <Route path="/" element={
+                <>
+                  <Weather city={city} />
+                  <div className="content">
+                    {city && (
+                      <>
+                        <div className="c-col">
+                          <Population title={`Population`} city={city} />
+                          <CurrencyConverter />
+                        </div>
+                        <div className="c-col map">
+                          <CityMap city={city} />
+                        </div>
+                        <div className="c-col">
+                          <MarketStack title={`MarketStack`} />
+                          <ExchangeRateStack title={`ExchangeRateStack`} />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </>
+              } />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/Inscription" element={<Inscription />} />
+              <Route path="/Connexion" element={<Connexion />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
 
+              {/* Route pour le chat */}
+              <Route path="/chat" element={
+                <Suspense fallback={<div>Loading Chat...</div>}>
+                  <LazyChat />
+                </Suspense>
+              } />
 
-
-
-          <Route path="*" element={<h1>404</h1>} />
-        </Routes>
-        <UnsplashImages searchTerm={city} />
-        <ChatbotComponent />
-        <Footer />
-      </div>
-    </Router>
-    </ThemeContext.Provider>
+              <Route path="*" element={<h1>404</h1>} />
+            </Routes>
+            <UnsplashImages searchTerm={city} />
+            <ChatbotComponent />
+            <Footer />
+          </div>
+        </Router>
+      </ThemeContext.Provider>
     </AuthProvider>
   );
 }

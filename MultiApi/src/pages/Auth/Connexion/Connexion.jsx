@@ -4,7 +4,7 @@ import { useAuth } from '../../../contexts/AuthContext'; // Import the useAuth h
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Connexion = () => {
-    const { setIsAuthenticated } = useAuth(); // Use the authentication context
+    const { setIsAuthenticated, setUserName } = useAuth(); // Use the authentication context
     const [utilisateur, setUtilisateur] = useState({
         email: '',
         motDePasse: ''
@@ -28,14 +28,23 @@ const Connexion = () => {
                 mot_de_passe: utilisateur.motDePasse
             });
     
-            console.log(response.data);
-            setIsAuthenticated(true); // Update the authentication state to true
+            console.log("Afficher les détails de la connexion", response.data.nom_utilisateur);
+            setIsAuthenticated(true);
+    
+            // Utiliser un nom d'utilisateur par défaut si non disponible dans la réponse
+            const userNameFromResponse = response.data.nom_utilisateur;
+            setUserName(userNameFromResponse);
+            localStorage.setItem('isAuthenticated', 'true');
+            localStorage.setItem('userName', userNameFromResponse);
             setUtilisateur({ email: '', motDePasse: '' });
-            navigate('/'); // Redirect to the home page
+            navigate('/');
+            console.log("nom_utilisateur", userName);
         } catch (error) {
-            console.error(error); // Handle errors
+            console.error(error);
         }
     };
+    
+    
 
     return (
         <div>
