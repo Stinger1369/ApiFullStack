@@ -1,13 +1,13 @@
 const express = require('express');
 const OpenAI = require('openai-api');
-const cors = require('cors');  // Ajouter l'importation de CORS
+const cors = require('cors');
 require('dotenv').config();
-
+const authRoutes = require('./Routes/authRoutes'); 
 const app = express();
 
 // Appliquer le middleware CORS
 app.use(cors({
-    origin: 'http://localhost:5173' 
+    origin: 'http://localhost:5173'
 }));
 
 app.use(express.json());
@@ -34,6 +34,9 @@ app.post('/chatbot', async (req, res) => {
         }
     }
 });
+
+// Utilisez les routes d'authentification
+app.use('/auth', authRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
