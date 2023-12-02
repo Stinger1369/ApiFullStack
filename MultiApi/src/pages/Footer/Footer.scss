@@ -1,0 +1,12 @@
+@import '../../variables';
+
+footer {
+    background-color: $bg-nav;
+    // background-color: rgb(107 150 201 / 50%);
+    border-radius: $b-radius;
+    box-shadow: $shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $f-art;
+}

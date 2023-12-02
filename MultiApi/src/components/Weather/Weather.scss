@@ -1,0 +1,109 @@
+@import '../../variables';
+
+.weather {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $p;
+    border: $b;
+    border-radius: $b-radius;
+    background-color: $bg-color;
+    box-shadow: $shadow;
+    text-align: center;
+    background-size: cover; 
+    background-position: center;
+    line-height: 1em !important; /* Set line height to 24 pixels */
+    .firstBlock {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 55%;
+        overflow: hidden;
+        .ville {
+            // border: 0;
+            width: 30%;
+            position: relative;
+            h1 {
+                font-size: 2em;
+            }
+            .country {
+                position: absolute;
+                top: 0;
+                right: 1em;
+                font-family: $f-art;
+            }
+            .w-icon {
+                width: 4rem; /* Largeur de l'icône */
+                height: 4rem; /* Hauteur de l'icône */
+            }   
+        }
+        .temp, .info {
+            // padding: $p;
+            border: $b;
+            border-radius: $b-radius;
+            background-color: $bg-color;
+            box-shadow: $shadow;
+            width: 28%;
+            height: 100%;
+            overflow: hidden;
+            p {
+                margin: $p;
+                font-size: 1.2em;
+                &.hour {
+                    font-style: italic;
+                    font-size: small;
+                    margin-top: -0.7em;
+                    margin-bottom: 0.4em;
+                }
+                &.temperature, &.condition {
+                    font-size: large;
+                    font-weight: bold;
+                }
+            }         
+        }
+        
+    }
+    
+    .weekly-forecast {
+        height: 35%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        overflow: hidden;
+        .daily-forecast {
+            height: 100%;
+            padding: 0.7em $p;
+            border-radius: $b-radius;
+            background-color: $bg-color;
+            box-shadow: $shadow;
+            font-size: 0.7rem;
+            overflow: hidden;
+        }
+        .daily-icon {
+            width: 3.7em;
+        }
+        .ranger {
+            font-style: italic;
+        }
+    }
+}
+
+
+@media screen and (min-width: $xl) {
+    .weather {    
+        .weekly-forecast {
+            .daily-forecast {
+                font-size: 1rem;
+                padding: $p 0.8em;
+                margin: 0.2em;
+            }
+            .daily-icon {
+                width: 3.5em;
+            }
+            .ranger {
+                font-size: 0.8rem;
+            }
+        }
+    }
+}

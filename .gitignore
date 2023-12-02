@@ -79,6 +79,10 @@ web_modules/
 .env.production.local
 .env.local
 
+# Ignorer les fichiers d'environnement dans les sous-dossiers spécifiques
+MultiApiBackend/.env
+MultiApi/.env
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache

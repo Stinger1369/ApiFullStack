@@ -1,0 +1,13 @@
+@import '../../variables';
+
+// Styles pour le composant App
+.content {
+  .c-col {
+    .map-container {
+      height: 100%;
+      .leaflet-container {
+        border-radius: $b-radius;
+      }
+    }
+  }
+}
