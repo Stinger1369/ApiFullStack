@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const inscriptionController = require('../Controllers/inscriptionController');
-const connexionController = require('../Controllers/connexionController');
 
-// Route pour l'inscription d'un utilisateur
+// Import the controllers
+const inscriptionController = require('../Controllers/UserControllers/inscriptionController');
+const connexionController = require('../Controllers/UserControllers/connexionController');
+const resetPasswordController = require('../Controllers/UserControllers/resetPasswordController');
+
+// Existing routes
 router.post('/inscription', inscriptionController);
-
-// Route pour la connexion d'un utilisateur
 router.post('/connexion', connexionController);
+
+router.post('/auth/reset-password', resetPasswordController);
 
 module.exports = router;

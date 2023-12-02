@@ -13,6 +13,11 @@ import ExchangeRateStack from './components/ExchangeRateStack/ExchangeRateStack'
 import CurrencyConverter from './components/CurrencyConverter/CurrencyConverter';
 import ThemeContext from './contexts/ThemeContext';
 import ChatbotComponent from './components/ChatbotComponent/ChatbotComponent';
+import Inscription from './pages/Auth/Inscription/Inscription';
+import Connexion from './pages/Auth/Connexion/Connexion';
+import { AuthProvider } from './contexts/AuthContext';
+import ResetPassword from './pages/Auth/ResetPassword/ResetPassword';
+
 
 import './App.scss';
 
@@ -26,7 +31,7 @@ function App() {
 
   console.warn(theme)
   return (
-    // Provider
+    <AuthProvider>
     <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
     <Router>
       <div className="App">
@@ -57,6 +62,14 @@ function App() {
           } />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/Inscription" element={<Inscription />} />
+          <Route path="/Connexion" element={<Connexion />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+
+
+
+
+          <Route path="*" element={<h1>404</h1>} />
         </Routes>
         <UnsplashImages searchTerm={city} />
         <ChatbotComponent />
@@ -64,6 +77,7 @@ function App() {
       </div>
     </Router>
     </ThemeContext.Provider>
+    </AuthProvider>
   );
 }
 

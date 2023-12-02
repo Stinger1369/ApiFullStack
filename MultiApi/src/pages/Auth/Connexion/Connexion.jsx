@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useAuth } from '../../../contexts/AuthContext'; // Import the useAuth hook
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Connexion = () => {
+    const { setIsAuthenticated } = useAuth(); // Use the authentication context
     const [utilisateur, setUtilisateur] = useState({
         email: '',
         motDePasse: ''
     });
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -14,15 +19,22 @@ const Connexion = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Envoyez les données de connexion au backend ici
-        console.log(utilisateur);
-        // Réinitialisez le formulaire après la connexion
-        setUtilisateur({
-            email: '',
-            motDePasse: ''
-        });
+    
+        try {
+            const response = await axios.post('http://localhost:3001/auth/connexion', {
+                email: utilisateur.email,
+                mot_de_passe: utilisateur.motDePasse
+            });
+    
+            console.log(response.data);
+            setIsAuthenticated(true); // Update the authentication state to true
+            setUtilisateur({ email: '', motDePasse: '' });
+            navigate('/'); // Redirect to the home page
+        } catch (error) {
+            console.error(error); // Handle errors
+        }
     };
 
     return (

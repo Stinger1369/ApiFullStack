@@ -7,17 +7,20 @@ const app = express();
 
 // Appliquer le middleware CORS
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173' // Vous pouvez configurer cela en fonction de vos besoins
 }));
 
 app.use(express.json());
 
-const openai = new OpenAI(process.env.OPENAI_API_KEY);
+// Utilisez les routes d'authentification
+app.use('/auth', authRoutes);
 
+const openai = new OpenAI(process.env.OPENAI_API_KEY);
 const port = process.env.PORT || 3001;
 
 app.post('/chatbot', async (req, res) => {
     const userMessage = req.body.message;
+    
     try {
         const response = await openai.complete({
             engine: 'davinci',
@@ -34,9 +37,6 @@ app.post('/chatbot', async (req, res) => {
         }
     }
 });
-
-// Utilisez les routes d'authentification
-app.use('/auth', authRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
