@@ -21,29 +21,29 @@ const Connexion = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+      
         try {
-            const response = await axios.post('http://localhost:3001/auth/connexion', {
-                email: utilisateur.email,
-                mot_de_passe: utilisateur.motDePasse
-            });
-    
-            console.log("Afficher les détails de la connexion", response.data.nom_utilisateur);
-            setIsAuthenticated(true);
-    
-            // Utiliser un nom d'utilisateur par défaut si non disponible dans la réponse
-            const userNameFromResponse = response.data.nom_utilisateur;
-            setUserName(userNameFromResponse);
-            localStorage.setItem('isAuthenticated', 'true');
-            localStorage.setItem('userName', userNameFromResponse);
-            setUtilisateur({ email: '', motDePasse: '' });
-            navigate('/');
-            console.log("nom_utilisateur", userName);
+          const response = await axios.post('http://localhost:3001/auth/connexion', {
+            email: utilisateur.email,
+            mot_de_passe: utilisateur.motDePasse
+          });
+      
+          console.log("Afficher les détails de la connexion", response.data);
+          setIsAuthenticated(true);
+          setUserName(response.data.nom_utilisateur);
+      
+          // Stocker l'ID et le nom de l'utilisateur dans le localStorage
+          localStorage.setItem('userId', response.data.id);
+          localStorage.setItem('userName', response.data.nom_utilisateur);
+          localStorage.setItem('isAuthenticated', 'true');
+      
+          setUtilisateur({ email: '', motDePasse: '' });
+          navigate('/');
+          console.log("ID utilisateur", response.data.id); // Pour vérifier
         } catch (error) {
-            console.error(error);
+          console.error(error);
         }
-    };
-    
+      };
     
 
     return (

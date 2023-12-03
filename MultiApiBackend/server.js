@@ -6,25 +6,35 @@ require('dotenv').config();
 const authRoutes = require('./Routes/authRoutes');
 const chatRoutes = require('./Routes/chatRoutes/chatRoutes');
 const chatController = require('./Controllers/chatControllers/chatController');
-// Import OpenAI package
+const userRoutes = require('./Routes/userRoutes/userRoutes');
 const { OpenAI } = require('openai');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
 
-// Appliquer le middleware CORS
-app.use(cors({
-  origin: 'http://localhost:5173', // Vous pouvez configurer cela en fonction de vos besoins
-}));
+// Configuration CORS pour autoriser les requêtes de votre client React
+const corsOptions = {
+  origin: 'http://localhost:5173', // Remplacer par l'URL de votre client React
+  methods: ["GET", "POST"],
+  credentials: true,
+  allowedHeaders: ["Content-Type"]
+};
+
+app.use(cors(corsOptions));
+
+// Configuration de Socket.IO avec les options CORS
+const io = socketIo(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"]
+  }
+});
 
 app.use(express.json());
 
-// Utilisez les routes d'authentification
 app.use('/auth', authRoutes);
-
-// Utilisez les routes du chat
 app.use('/chat', chatRoutes);
+app.use('/api', userRoutes);
 
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 const port = process.env.PORT || 3001;
@@ -49,20 +59,20 @@ app.post('/chatbot', async (req, res) => {
   }
 });
 
-// WebSocket pour le chat
+// Gestion des connexions WebSocket
 io.on('connection', (socket) => {
-  console.log('A user connected');
+  console.log('Un utilisateur connecté');
 
   socket.on('disconnect', () => {
-    console.log('A user disconnected');
+    console.log('Un utilisateur déconnecté');
   });
 
   socket.on('chat message', (message) => {
-    // Broadcast the message to all connected clients
     io.emit('chat message', message);
   });
+
 });
 
 server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Le serveur tourne sur le port ${port}`);
 });

@@ -44,7 +44,7 @@ function NavBar({ onSearch }) {
           <Link to="/">Accueil</Link>
           <Link to="/about">A propos</Link>
           <Link to="/contact">Contact</Link>
-         
+          <Link to="/chat">Chat</Link>
           {!isAuthenticated && <Link to="/inscription">Inscription</Link>}
           {!isAuthenticated && <Link to="/connexion">Connexion</Link>}
           {isAuthenticated && <button onClick={handleLogout}>Déconnexion</button>}

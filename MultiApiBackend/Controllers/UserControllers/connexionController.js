@@ -12,11 +12,14 @@ const connexionController = (req, res) => {
         }
 
         if (result.length > 0) {
-            // Directly comparing plain text password
             if (mot_de_passe === result[0].mot_de_passe) {
-                // Include 'nom_utilisateur' in the response
                 const nomUtilisateur = result[0].nom_utilisateur;
-                res.status(200).json({ message: 'Connexion réussie', nom_utilisateur: nomUtilisateur });
+                const userId = result[0].id; // Récupérer l'ID de l'utilisateur
+                res.status(200).json({ 
+                    message: 'Connexion réussie', 
+                    nom_utilisateur: nomUtilisateur,
+                    id: userId // Inclure l'ID dans la réponse
+                });
             } else {
                 res.status(401).json({ message: 'Mot de passe invalide' });
             }

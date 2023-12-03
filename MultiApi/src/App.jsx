@@ -63,17 +63,16 @@ function App() {
                 </>
               } />
               <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/Inscription" element={<Inscription />} />
-              <Route path="/Connexion" element={<Connexion />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-
-              {/* Route pour le chat */}
-              <Route path="/chat" element={
+               {/* Route pour le chat */}
+               <Route path="/chat" element={
                 <Suspense fallback={<div>Loading Chat...</div>}>
                   <LazyChat />
                 </Suspense>
               } />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/Inscription" element={<Inscription />} />
+              <Route path="/Connexion" element={<Connexion />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
 
               <Route path="*" element={<h1>404</h1>} />
             </Routes>
