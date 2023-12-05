@@ -10,13 +10,13 @@
 }
 
 .unsplash {
+  padding-bottom: 50px !important;
   &.image-gallery {
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
     align-items: center;
     border-radius: $b-radius;
-    // position: relative;
 
     .image-set {
       display: flex;

@@ -5,12 +5,14 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0 $p !important;
+  padding: 0.3em !important;
+  // padding: 0 $p !important;
   background-color: $bg-nav;
   box-shadow: $shadow;
   border-bottom-left-radius: $b-radius;
   border-bottom-right-radius: $b-radius;
-  animation: backgroundAnimation 10s infinite alternate;
+  position: relative !important;
+  // animation: backgroundAnimation 10s infinite alternate;
 
   @keyframes backgroundAnimation {
     0%, 100% { 
@@ -20,93 +22,121 @@ nav {
         background-color: #ff7f7f; // Rouge
     }
   }
-  .nav-l, .nav-r {
+
+  .nav-l, .nav-mid, .nav-r {
     display: flex;
     flex-direction: row;
+    justify-content: end;
     align-items: center;
+    list-style: none;
+    margin: 0;
+    .logo{
+      display: flex;
+      flex-direction: row;
+    }
     .nav-logo {
+      display: none;
       font-family: $f-art;
       font-size: 1.5em;
       color: rgb(20, 19, 19);
       margin-left: $p;
     }
+    .links {
+      a {
+        margin: 0 10px;
+        text-decoration: none !important;
+        color: #333;
+        transition: color 0.3s ease;
+        &:hover {
+          color: #007bff;
+        }
+      }
+    }
+
+    .nav-mid {
+      margin-right: 1em;
+    }
+
+  }
+
+  button {
+    padding: 5px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: $bg-nav;
+    }
+  }
+
+  img {
+    width: 35px; 
+    height: 35px;
+    border-radius: 30px;
   }
 }
 
-.logo{
-  display: flex;
-  flex-direction: row;
-}
-.frame {
-  width: 35px; 
-  height: 35px; 
-  border: 1px solid #ccc; 
-  overflow: hidden; 
-  border-radius: 50px;
-}
-.navbar img {
-  width: 35px; 
-  height: 35px;
-  border-radius: 30px;
-}
-.frame iframe {
-  width: 100%; /* Remplir complètement la largeur de la div parente */
-  height: 100%; /* Remplir complètement la hauteur de la div parente */
-}
-
-.navbar .nav-r a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #333;
-  transition: color 0.3s ease;
-}
-
-.navbar .nav-r a:hover {
-  color: #007bff;
-}
-
-.navbar .search {
+.search {
   display: flex;
   align-items: center;
-}
-
-.navbar input[type="text"] {
-  padding: 5px $p;
-  width: 200px;
-  margin: 0 1em 0 2em;
-  border-radius: $b-radius;
-  border: 1px solid rgb(255 255 255 / 49%);
-  background-color: rgb(111 175 175 / 79%);
-  &:focus {
-      outline: 1px solid rgba(255, 255, 255, 0.603);
-  }
-  &::placeholder {
-      color: rgba(240, 236, 236, 0.979);
-      font-style: italic;
-  }
-}
-
-.navbar button {
-  padding: 5px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.navbar button:hover {
-  background-color: $bg-nav;
-}
-
-
-@media screen and (max-width: $lg) {
-  nav {
-    width: 100vw;
-    padding: 0 $p !important;
-    .nav-logo, .nav-r .links {
-      display: none;
+  margin-right: 1em;
+  input[type="text"] {
+    padding: 5px $p;
+    border-radius: $b-radius;
+    border: 1px solid rgb(255 255 255 / 49%);
+    background-color: rgb(111 175 175 / 79%);
+    &:focus {
+        outline: 1px solid rgba(255, 255, 255, 0.603);
     }
+    &::placeholder {
+        color: rgba(240, 236, 236, 0.979);
+        font-style: italic;
+    }
+  }
+
+  button {
+    color: aliceblue;
+  }
+}
+
+
+.nav-r {
+  position: absolute;
+  // top: 0;
+  top: 0.5em;
+  right: 0;
+  .navbar-toggler {
+  }  
+}
+
+.nav-mid.show {
+  padding-left: 0;
+  .links {
+    margin: auto;
+    padding: 1em;
+  }
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media screen and (min-width: $lg) {
+  nav {
+    padding: 0.3em 1em;
+  }
+  .nav-r {
+    position: relative;
+    top: 0;
+  }
+  .links {
+    // display: flex;
+    flex-direction: row;
+    padding-right: 1em;
   }
 }

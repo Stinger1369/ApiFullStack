@@ -13,15 +13,16 @@
     background-size: cover; 
     background-position: center;
     line-height: 1em !important; /* Set line height to 24 pixels */
+
     .firstBlock {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 55%;
+        height: 180px;
+        // height: 55%;
         overflow: hidden;
+        margin: 0.2em;
         .ville {
-            // border: 0;
-            width: 30%;
             position: relative;
             h1 {
                 font-size: 2em;
@@ -38,12 +39,18 @@
             }   
         }
         .temp, .info {
+            @media screen and (min-width: $lg) {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center !important;
+                align-items: center !important;
+            }
             // padding: $p;
             border: $b;
             border-radius: $b-radius;
             background-color: $bg-color;
             box-shadow: $shadow;
-            width: 28%;
+            // width: 28%;
             height: 100%;
             overflow: hidden;
             p {
@@ -65,20 +72,34 @@
     }
     
     .weekly-forecast {
-        height: 35%;
+        // height: 35%;
+        height: 140px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0;
+        margin-top: 1em;
         overflow: hidden;
         .daily-forecast {
-            height: 100%;
-            padding: 0.7em $p;
-            border-radius: $b-radius;
-            background-color: $bg-color;
-            box-shadow: $shadow;
-            font-size: 0.7rem;
-            overflow: hidden;
+            @media screen and (min-width: $lg) {
+                width: 120px;
+                height: 80%;
+                padding: 0.2em $p;
+                border-radius: $b-radius;
+                background-color: $bg-color;
+                box-shadow: $shadow;
+                font-size: 0.7rem;
+                overflow: hidden;
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+
+            p {
+                padding: 0;
+                margin: 0;
+            }
         }
         .daily-icon {
             width: 3.7em;

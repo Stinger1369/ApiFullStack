@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/giphy.gif';
 import { useAuth } from '../../contexts/AuthContext';
+import ThemeControl from '../../components/ThemeControl/ThemeControl';
 
 import './NavBar.scss';
 
@@ -15,12 +16,16 @@ function NavBar({ onSearch }) {
  
   const handleSearch = () => {
     onSearch(searchTerm);
+    setSearchTerm('')
   };
+  
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleSearch();
+      onSearch(searchTerm);
+      setSearchTerm('')
     }
   };
+  
   const handleLogout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('isAuthenticated'); 
@@ -28,39 +33,47 @@ function NavBar({ onSearch }) {
   };
 
   return (
-    <nav className="navbar">
+  <nav className="navbar navbar-expand-xl">
       <div className="nav-l">
         <Link to="/"> 
-          <div className="logo">
+          <div className="logo d-none d-xl-inline">
             <img src={Logo} alt="MultiAPI Logo" /> 
           </div>
         </Link>  
         <div className="nav-logo">MultiAPI</div>
+        <ThemeControl />
       </div>
 
-      <div className="nav-r">
+      <ul className="nav-mid collapse navbar-collapse" id="navbarSupportedContent">
         <div className="links">
         {isAuthenticated && <span>Bonjour, {userName}!</span>}
-          <Link to="/">Accueil</Link>
-          <Link to="/about">A propos</Link>
-          <Link to="/contact">Contact</Link>
-          <Link to="/chat">Chat</Link>
-          {!isAuthenticated && <Link to="/inscription">Inscription</Link>}
-          {!isAuthenticated && <Link to="/connexion">Connexion</Link>}
-          {isAuthenticated && <button onClick={handleLogout}>Déconnexion</button>}
+          <li className='nav-item'><Link to="/">Accueil</Link></li>
+          <li className='nav-item'><Link to="/about">A propos</Link></li>
+          <li className='nav-item'><Link to="/contact">Contact</Link></li>
+          <li className='nav-item'><Link to="/chat">Chat</Link></li>
+          <li className='nav-item'>{!isAuthenticated && <Link to="/inscription" className='text-success'>Inscription</Link>}</li>
+          <li className='nav-item'>{!isAuthenticated && <Link to="/connexion" className='text-success'>Connexion</Link>}</li>
+          <li className='nav-item'>{isAuthenticated && <a onClick={handleLogout} className='btn text-danger'>Déconnexion</a>}</li>
         </div>
+      </ul>
+
+      <div className="nav-r">
         <div className="search">
             <input
               type="text"
               placeholder="Rechercher une ville..."
               value={searchTerm}
               onChange={handleSearchChange}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyPress}
             />
-            <button onClick={handleSearch}>Recherche</button>
-          </div>
+            <button onClick={handleSearch}><i className="bi bi-search"></i></button>
         </div>
-    </nav>
+
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+      </div>
+  </nav>
   );
 }
 

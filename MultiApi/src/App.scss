@@ -3,13 +3,21 @@
 .App {
 
   nav {
-    height: 4vh;
-    margin-bottom: $p-m;
+    // height: 4vh;
+    // height: 4%;
+    // margin-bottom: $p-m;
+  }
+
+  .weather {
+    // min-height: 28vh;
+    // min-height: 28%;
+    // margin: $p-m 0;
   }
 
   .content {
-    height: calc(90vh - 4vh - 25vh - 20vh - 6*$p);
-    margin: $p 0;
+    // border: 1px solid red;
+    // height: calc(90vh - 4vh - 25vh - 20vh - 6*$p);
+    margin: $p-m 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -18,19 +26,19 @@
     background-size: cover; // Assurer que l'image de fond couvre tout l'espace
     border-radius: $b-radius;
     
+    
     .c-col {
-      width: 24%;
-      height: calc(100% - $p);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      height: 500px;
       font-size: 0.8em;
-      
+      padding: 0;
+      // @media screen and (min-width: $lg) {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+      // }
+
       &.map {
-        width: 48%;
-        border: $b;
-        border-radius: $b-radius;
-        box-shadow: $shadow;
+        padding: 0 1em;
       }
       .c-item {
         height: 48%;
@@ -59,7 +67,7 @@
   }
 
   .unsplash {
-    height: 12vh;
+    // height: 12vh;
     margin: $p-m 0;
   }
   .draggable-chatbot-container {
@@ -97,7 +105,7 @@
   footer {
     height: 5vh;
     width: 100%;
-    //position: absolute;
+    position: absolute;
     bottom: 0;
   }
 }

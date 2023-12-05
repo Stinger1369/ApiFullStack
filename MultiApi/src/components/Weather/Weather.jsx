@@ -93,16 +93,15 @@ function Weather({ city }) {
   return (
     <div className="weather" style={{ backgroundImage: `url(${backgroundImage})` }}>
 
-      <div className="firstBlock">
-        
-      <div className="temp">
-      <p><WiThermometer /> {currentWeather.main.feels_like}°C</p>
-         <p><FontAwesomeIcon icon={faThermometerHalf} /> {currentWeather.main.feels_like}°C</p>
-         <p><FontAwesomeIcon icon={faThermometerQuarter} /> {currentWeather.main.temp_min}°C</p>
-         <p><FontAwesomeIcon icon={faThermometerThreeQuarters} /> {currentWeather.main.temp_max}°C</p>
-      </div>
+      <div className="firstBlock row no-gutters">  
+        <div className="temp d-none d-xl-block col-xl-4">
+          <p><WiThermometer /> {currentWeather.main.feels_like}°C</p>
+          <p><FontAwesomeIcon icon={faThermometerHalf} /> {currentWeather.main.feels_like}°C</p>
+          <p><FontAwesomeIcon icon={faThermometerQuarter} /> {currentWeather.main.temp_min}°C</p>
+          <p><FontAwesomeIcon icon={faThermometerThreeQuarters} /> {currentWeather.main.temp_max}°C</p>
+        </div>
 
-        <div className="ville">      
+        <div className="ville col col-xl-4">      
           <h1>{currentWeather.name}</h1>
           <p className='country'>{currentWeather.sys.country}</p>
           <p>{new Date(currentWeather.dt * 1000).toLocaleDateString()}</p>
@@ -110,7 +109,7 @@ function Weather({ city }) {
           <img src={getIconUrl(currentWeather.weather[0].icon)} alt="Weather icon" className='w-icon'/>
         </div>
 
-        <div className="info">
+        <div className="info d-none d-xl-block col-xl-4">
           <p className='condition'>Conditions: {currentWeather.weather[0].description}</p>
           <p>H: {currentWeather.main.humidity}%</p>
           <p>P: {currentWeather.main.pressure}hPa</p>
@@ -120,7 +119,7 @@ function Weather({ city }) {
 
       <div className="weekly-forecast" style={{ color: textColor }}>
       {weeklyForecast.map((day, index) => (
-        <div key={index} className="daily-forecast">
+        <div key={index} className="daily-forecast d-none d-xl-inline">
           <p>{new Date(day.dt * 1000).toLocaleDateString()}</p>
           <img src={getIconUrl(day.weather[0].icon)} alt="Daily weather icon" className='daily-icon' />
           <p className='ranger'>{day.temp.min}°C - {day.temp.max}°C</p>

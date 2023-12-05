@@ -11,7 +11,8 @@ import Contact from './pages/Contact/Contact';
 import MarketStack from './components/MarketStack/MarketStack';
 import ExchangeRateStack from './components/ExchangeRateStack/ExchangeRateStack';
 import CurrencyConverter from './components/CurrencyConverter/CurrencyConverter';
-import ThemeContext from './contexts/ThemeContext';
+import { ThemeProvider } from './hooks/ThemeProvider';
+import ThemeControl from './components/ThemeControl/ThemeControl';
 import ChatbotComponent from './components/ChatbotComponent/ChatbotComponent';
 import Inscription from './pages/Auth/Inscription/Inscription';
 import Connexion from './pages/Auth/Connexion/Connexion';
@@ -34,26 +35,27 @@ function App() {
 
   console.warn(theme);
   return (
+    <div className="App">
     <AuthProvider>
-      <ThemeContext.Provider value={{ theme: theme, setTheme: setTheme }}>
+      <ThemeProvider>
+        <ThemeControl />
         <Router>
-          <div className="App">
             <NavBar onSearch={handleSearch} />
             <Routes>
               <Route path="/" element={
                 <>
                   <Weather city={city} />
-                  <div className="content">
+                  <div className="content row">
                     {city && (
                       <>
-                        <div className="c-col">
+                        <div className="c-col d-none d-xl-block col-xl-3">
                           <Population title={`Population`} city={city} />
                           <CurrencyConverter />
                         </div>
-                        <div className="c-col map">
+                        <div className="c-col map col col-xl-6">
                           <CityMap city={city} />
                         </div>
-                        <div className="c-col">
+                        <div className="c-col d-none d-xl-block col-xl-3">
                           <MarketStack title={`MarketStack`} />
                           <ExchangeRateStack title={`ExchangeRateStack`} />
                         </div>
@@ -79,10 +81,10 @@ function App() {
             <UnsplashImages searchTerm={city} />
             <ChatbotComponent />
             <Footer />
-          </div>
         </Router>
-      </ThemeContext.Provider>
+      </ThemeProvider>
     </AuthProvider>
+    </div>
   );
 }
 
