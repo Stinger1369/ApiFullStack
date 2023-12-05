@@ -5,36 +5,28 @@
   padding: 0;
   box-sizing: border-box;
 }
-p {
-  padding: 0;
-  margin: 0;
-}
 
 body {
-  height: 100svh;
-  width: 100vw !important;
+  height: 100vh; // Corrected from 100svh to 100vh
+  width: 100vw;
   background-color: #ddd;
-  overflow-y: hidden;
-  position: relative;
+  overflow-y: auto; // Changed from hidden to auto to allow scrolling
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #root {
   width: 100%;
-  // max-height: 100%;
+  max-width: 1200px; // Set a max-width for larger screens
 }
 
-/* Styles for screens bigger FullHd 1080P */
-@media screen and (min-width: $lg) and (max-width: xl)  {
+@media screen and (min-width: $lg) and (max-width: $xl) { // Ensure $xl is defined in your variables
   body {
-    font-size: 0.7em !important;
-    // line-height: 0.8em !important;
-    // background-color: aqua;
+    font-size: 0.7em;
     #root {
-      width: $w;
       margin: 0 auto;
-      footer {
-        width: $w;
-      }
+      width: $w; // Ensure $w is defined in your variables
     }
   }
 }
@@ -42,25 +34,8 @@ body {
 @media screen and (min-width: 1921px) {
   body {
     #root {
-      width: 1200px;
+      width: 1200px; // This overrides the width set in the body for screens larger than 1920px
       margin: 0 auto;
-      footer {
-        width: 1200px;
-      }
     }
   }
 }
-
-
-// @media (prefers-color-scheme: light) {
-//   :root {
-//     color: #213547;
-//     background-color: #ffffff;
-//   }
-//   a:hover {
-//     color: #747bff;
-//   }
-//   button {
-//     background-color: #f9f9f9;
-//   }
-// }
