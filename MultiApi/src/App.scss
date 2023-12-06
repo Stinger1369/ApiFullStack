@@ -52,15 +52,24 @@
           font-size: 1.7em;
           font-family: $f-art;
         }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         .c-card {
           padding: $p;
           margin-top: $p;
           height: 75%;
+          width: 90%;
           font-size: 1.2em;
           background-color: rgb(159 197 197 / 41%);
           border-radius: $b-radius;
           box-shadow: $shadow;
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
       }
     }

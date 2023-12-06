@@ -27,25 +27,19 @@ const ExchangeComponent = () => {
 
     return (
         <div className="c-item exchange-component">
-            <div>
-                <div>
-                    <div className='title'>Taux de change</div>
-                    {exchangeData ? (
-                        <ul className="c-card exchange-list">
-                        {Object.entries(exchangeData.conversion_rates).map(([currency, rate]) => (
-                            <li key={currency}>{currency} : {rate}</li>
-                        ))}
-                        </ul>
-                    ) : (
-                        <ul className="c-card exchange-list loading">
-                            <Spinner />
-                        </ul>
-                    )}
-                    
-                </div>
-            </div>
-    </div>
-    
+            <div className='title'>Taux de change</div>
+            {exchangeData ? (
+                <ul className="c-card exchange-list">
+                {Object.entries(exchangeData.conversion_rates).map(([currency, rate]) => (
+                    <li key={currency}>{currency} : {rate}</li>
+                ))}
+                </ul>
+            ) : (
+                <ul className="c-card exchange-list loading">
+                    <Spinner />
+                </ul>
+            )}     
+        </div>
     );
 };
 

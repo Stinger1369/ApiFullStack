@@ -10,7 +10,9 @@
 }
 
 .unsplash {
-  padding-bottom: 50px !important;
+  padding-bottom: 70px !important;
+  @media screen and (min-width: $xl) {
+  }
   &.image-gallery {
     display: flex;
     flex-wrap: nowrap;
