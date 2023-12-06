@@ -6,7 +6,7 @@ const CurrencyConverter = () => {
     const [amount, setAmount] = useState('');
     const [targetCurrency, setTargetCurrency] = useState('EUR');
     const [convertedAmount, setConvertedAmount] = useState(null);
-    const apiKey = 'c1ff859c440f1b4a66f3e894';
+    const apiKey = '49dda43b7e64fbc57b3abbd8';
     const apiUrl = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`;
 
     useEffect(() => {

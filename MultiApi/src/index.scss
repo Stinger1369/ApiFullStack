@@ -7,36 +7,45 @@
 }
 
 body {
-  // min-height: 100vh; // Corrected from 100svh to 100vh
   width: 100vw;
   background-color: #ddd;
-  overflow-y: auto; // Changed from hidden to auto to allow scrolling
+  overflow-y: auto; 
   background: bottom left repeat-x fixed url('./assets/images/bgs/m2.png');
-              // top left no-repeat url('./assets/images/bgs/n1.png')
-  ;
 }
 
 #root {
   width: 100%;
-  max-width: 1200px; // Set a max-width for larger screens
-  min-height: 100vh; // Corrected from 100svh to 100vh
+  max-width: 1200px;
+  min-height: 100vh; 
   position: relative;
 }
 
-@media screen and (min-width: $lg) and (max-width: $xl) { // Ensure $xl is defined in your variables
+@media screen and (max-width: 1200px) {
+  body, #root {
+    font-size: 0.9em; /* Ajustez la taille de la police pour les écrans plus petits */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body, #root {
+    font-size: 0.8em; /* Ajustez davantage pour les écrans encore plus petits */
+  }
+}
+
+@media screen and (min-width: $lg) and (max-width: $xl) {
   body {
     font-size: 0.7em;
     #root {
       margin: 0 auto;
-      width: $w; // Ensure $w is defined in your variables
+      width: $w; 
     }
   }
 }
 
-@media screen and (min-width: 1921px) {
+@media screen and (min-width: 1920px) {
   body {
     #root {
-      width: 1200px; // This overrides the width set in the body for screens larger than 1920px
+      width: 1200px;
       margin: 0 auto;
     }
   }

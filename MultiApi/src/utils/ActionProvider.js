@@ -27,7 +27,7 @@ class ActionProvider {
       }
     } catch (error) {
       console.error('Erreur lors de la communication avec le serveur backend:', error);
-      const errorMessage = this.createChatBotMessage("Une erreur s'est produite lors de la communication avec le serveur."); // Message d'erreur
+      const errorMessage = this.createChatBotMessage("j'ai payer 7$10 pour activée l'api maisq il faut attendre 24 heurs "); // Message d'erreur
       this.updateChatbotState(errorMessage);
     }
   }

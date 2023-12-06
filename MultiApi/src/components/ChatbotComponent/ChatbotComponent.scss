@@ -23,17 +23,34 @@ $transition-collapse: height .35s ease;
 
 .draggable-chatbot-container {
     height: 25px;
-    // height: 580px;
     width: 320px;
     transition: $transition-collapse;
 }
 .chatbot-window {
-    
-    .chatbot-content {
-        // height: 0;
-        // display: none;
-        &.show {
-            // height: 530px;
-        }      
+    .chatbot-header {
+      position: relative;
+      height: 150px; // Ajustez la hauteur du header pour contenir l'image
+      .chatbot-toggle {
+        position: absolute;
+        top: 0.1em;
+        right: 0.1em;
+        color: aliceblue;
+      }
+      .walking-man {
+        width: 100%; // Prend toute la largeur de l'en-tête
+        height: 100%; // Prend toute la hauteur de l'en-tête
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../../assets/images/chatbot-unscreen.gif');
+
+        background-size: contain; // Assurez-vous que l'image est entièrement visible
+        background-repeat: no-repeat;
+        background-position: center;
+        animation: walking-man-animation 3s linear infinite;
+      }
     }
+    
 }
+
+
