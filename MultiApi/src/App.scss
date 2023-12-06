@@ -1,17 +1,19 @@
 @import './variables';
-
+/* The animation code */
 .App {
-
   nav {
     // height: 4vh;
     // height: 4%;
     // margin-bottom: $p-m;
+    z-index: 2;
+    opacity: 0.8;
   }
 
   .weather {
     // min-height: 28vh;
     // min-height: 28%;
     // margin: $p-m 0;
+    opacity: 0.8;
   }
 
   .content {
@@ -38,7 +40,7 @@
       // }
 
       &.map {
-        padding: 0 1em;
+        padding: 0 1.5em;
       }
       .c-item {
         height: 48%;
@@ -47,6 +49,7 @@
         color: $c-white;
         border-radius: $b-radius;
         box-shadow: $shadow;
+        opacity: 0.8;
         background-image: url('./assets/images/sun.jpg');
         .title {
           font-size: 1.7em;
@@ -117,4 +120,36 @@
     position: absolute;
     bottom: 0;
   }
+}
+
+@keyframes moveRight {
+  from {left: -520px;}
+  to {left: 2500px;}
+}
+
+.cloud {
+  background: no-repeat url('./assets/images/bgs/n1.png');
+  width: 700px;
+  height: 300px;
+  position: fixed;
+  opacity: 0.5;
+  overflow:hidden;
+  z-index: 1;
+}
+
+.cloud-1 {
+  top: 0;
+  animation-name: moveRight;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+}
+
+.cloud-2 {
+  top: 150px;
+  left: -500px;
+  transform: scaleX(-1);
+  animation-name: moveRight;
+  animation-duration: 45s;
+  animation-delay: 4s;
+  animation-iteration-count: infinite;
 }
