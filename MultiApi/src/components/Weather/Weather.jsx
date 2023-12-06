@@ -88,7 +88,7 @@ function Weather({ city }) {
   // Fonction pour obtenir le chemin de l'icône en fonction du code météo
   const getIconUrl = (iconCode) => `http://openweathermap.org/img/wn/${iconCode}.png`;
   const textColor = currentWeather ? weatherToColor[currentWeather.weather[0].main] : '#000000';
-  console.log(textColor);
+  console.log(weeklyForecast);
 
   return (
     <div className="weather" style={{ backgroundImage: `url(${backgroundImage})` }}>
@@ -122,7 +122,8 @@ function Weather({ city }) {
         <div key={index} className="daily-forecast d-none d-xl-inline">
           <p>{new Date(day.dt * 1000).toLocaleDateString()}</p>
           <img src={getIconUrl(day.weather[0].icon)} alt="Daily weather icon" className='daily-icon' />
-          <p className='ranger'>{day.temp.min}°C - {day.temp.max}°C</p>
+          <p className='ranger'>{Math.round((day.temp.max + day.temp.min) /2)} °C</p>
+          {/* <p className='ranger'>{day.temp.min}°C - {day.temp.max}°C</p> */}
         </div>
       ))}
       </div>

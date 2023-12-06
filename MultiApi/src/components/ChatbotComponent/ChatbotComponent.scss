@@ -28,7 +28,10 @@ $transition-collapse: height .35s ease;
     transition: $transition-collapse;
 }
 .chatbot-window {
+    
     .chatbot-content {
+        // height: 0;
+        // display: none;
         &.show {
             // height: 530px;
         }      
